@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\experience;
 use App\Http\Requests\StoreexperienceRequest;
 use App\Http\Requests\UpdateexperienceRequest;
+use App\Http\Resources\ExperienceResource;
 
 class ExperienceController extends Controller
 {
@@ -13,7 +14,7 @@ class ExperienceController extends Controller
      */
     public function index()
     {
-        //
+        return ExperienceResource::collection(experience::all());
     }
 
     /**

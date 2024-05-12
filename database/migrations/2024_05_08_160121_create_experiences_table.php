@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->string('job');
             $table->string('title');
+            $table->text('description');
             $table->boolean('isTraining');
             $table->timestamps();
         });

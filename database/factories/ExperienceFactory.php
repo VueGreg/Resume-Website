@@ -23,6 +23,7 @@ class ExperienceFactory extends Factory
             'end_date' => fake()->date(),
             'job' => fake()->word(),
             'title' => fake()->sentence(2),
+            'description' => fake()->text(300),
             'isTraining' => fake()->boolean(),
             'id_project' => function () {
                 return project::inRandomOrder()->first()->id;

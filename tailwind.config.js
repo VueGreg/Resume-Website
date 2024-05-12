@@ -7,14 +7,14 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        'display': ['Poppins'],
-        'body': ['Poppins'],
-      },
       transitionProperty: {
         'height': 'height'
+      },
+      colors:{
+        'custom-gray':'rgb(55 65 81)',
       }
     },
   },
   plugins: [require('tailwind-scrollbar')],
+  darkMode: 'class',
 }
