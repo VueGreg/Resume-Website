@@ -12,6 +12,10 @@ export default {
       },
       colors:{
         'custom-gray':'rgb(55 65 81)',
+      },
+      dropShadow: {
+        '3xl': '0 35px 35px rgba(0, 0, 0, 0.6)',
+        '4xl': '0 2px 4px -2px rgba(0,0,0,0.6)',
       }
     },
   },

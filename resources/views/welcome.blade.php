@@ -15,10 +15,10 @@
         @vite(['resources/js/app.js', 'resources/css/app.css'])
         
     </head>
-    <body>
+    <body id="scrollId">
         <div id="app"></div>
 
         <script>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');</script>
-       <script src="https://kit.fontawesome.com/a0d5f723cd.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a0d5f723cd.js" crossorigin="anonymous"></script>
     </body>
 </html>
