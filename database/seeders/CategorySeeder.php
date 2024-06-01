@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\technology;
+use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class TechnologySeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        technology::factory(6)->create();
+        Category::factory(2)->create();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class TechnologyFactory extends Factory
     {
         return [
             'name' => fake()->word(),
+            'id_category' => Category::inRandomOrder()->first()->id,
             'url_image' => fake()->imageUrl(),
             'alt_image' => fake()->text(100),
         ];

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\SkillController;
+use App\Models\project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/experiences', [ExperienceController::class, 'index']);
+Route::get('/curriculum', [ResumeController::class, 'index']);

@@ -25,9 +25,6 @@ class ExperienceFactory extends Factory
             'title' => fake()->sentence(2),
             'description' => fake()->text(300),
             'isTraining' => fake()->boolean(),
-            'id_project' => function () {
-                return project::inRandomOrder()->first()->id;
-            },
             'id_business' => function () {
                 return business::inRandomOrder()->first()->id;
             },

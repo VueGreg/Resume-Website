@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\skill;
-use App\Http\Requests\StoreskillRequest;
-use App\Http\Requests\UpdateskillRequest;
-use App\Http\Resources\SkillResource;
+use App\Models\Category;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 
-class SkillController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return SkillResource::collection(skill::all());
+        //
     }
 
     /**
@@ -28,7 +27,7 @@ class SkillController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreskillRequest $request)
+    public function store(StoreCategoryRequest $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class SkillController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(skill $skill)
+    public function show(Category $category)
     {
         //
     }
@@ -44,7 +43,7 @@ class SkillController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(skill $skill)
+    public function edit(Category $category)
     {
         //
     }
@@ -52,7 +51,7 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateskillRequest $request, skill $skill)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
         //
     }
@@ -60,7 +59,7 @@ class SkillController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(skill $skill)
+    public function destroy(Category $category)
     {
         //
     }

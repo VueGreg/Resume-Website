@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('id_experience');
             $table->date('created_date');
             $table->text('url_image');
             $table->text('alt_image');

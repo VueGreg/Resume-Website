@@ -14,6 +14,16 @@ class ExperienceResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            "id" => $this->id,
+			"start_date" => $this->start_date,
+			"end_date" => $this->end_date,
+			"job" => $this->job,
+			"title" => $this->title,
+			"description" => $this->description,
+			"isTraining" => $this->isTraining,
+			"projects" => ProjectResource::collection($this->whenLoaded('projects')),
+			"business" => new BusinessResource($this->whenLoaded('business')),
+        ];
     }
 }

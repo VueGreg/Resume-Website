@@ -14,39 +14,43 @@
 
 
 <template>
-<div class="relative -translate-y-[410px] z-10 w-1/3 -top-[25rem]">
-    <div class="px-[40px] py-[20px] bg-[#fcfcfe] dark:bg-[#00283a] flex flex-col justify-start w-full h-[calc(100vh)] rounded-[10px] shadow-md">
+<div class="relative -translate-y-[410px] z-10 -top-[5rem] lg:-top-[25rem] h-[88vh]">
+    <div class="px-[40px] py-[20px] bg-[#fcfcfe] dark:bg-[#00283a] h-full flex flex-col justify-start w-full rounded-[10px] shadow-md">
         <div class="text-center">
-            <div class="relative inline-block mb-[20px] text-center">
-                <img class="border-[3px] border-[#00283a] shadow-md w-[200px] h-[200px] rounded-full object-cover object-top mb-10" src="http://resumewolff.test/images/Moi-removebg-preview.png" alt="">
-                <h5 class="text-[18px] py-1 font-extrabold text-[#dedee0]">Grégory WOLFF</h5>
-                <span id="autotext" class="text-[11px] uppercase tracking-wide font-bold pr-[1px] text-[#919ca1] border-r-2 border-transparent transition-colors duration-500 animate-blink">
+            <div class="relative mb-[20px] text-center flex flex-col justify-center items-center">
+                <img class="border-[3px] border-[#fcfcfe] dark:border-[#00283a] shadow-md w-[110px] lg:w-[200px] h-[110px] lg:h-[200px] rounded-full object-cover object-top mb-10" src="http://resumewolff.test/images/Moi-removebg-preview.png" alt="">
+                <h5 class="text-[18px] py-1 font-extrabold text-[#00283A] dark:text-[#dedee0]">Grégory WOLFF</h5>
+                <span id="autotext" class="text-[11px] mt-2 uppercase tracking-wide font-extrabold pr-[1px] text-[#919ca1] border-r-2 border-transparent transition-colors duration-500 animate-blink">
                     Je suis {{ displayedText }}
                 </span>
             </div>
         </div>
+
         <div class="divider h-[1px] border-dotted border-b-[2px] border-b-[#224454] my-[40px]"></div>
-        <div class="social flex justify-center">
-            <a class="text-[#dedee0] mx-[10px]" href="https://linkedin.com" target="_blank" title="Linkedin">
+
+        <div class="social flex justify-center text-[#00283A] dark:text-[#dedee0]">
+            <a class="mx-[10px]" href="https://linkedin.com" target="_blank" title="Linkedin">
                 <i class="fab fa-linkedin"></i>
             </a>
-            <a class="text-[#dedee0] mx-[10px]" href="https://github.com/" target="_blank" title="GitHub">
+            <a class="mx-[10px]" href="https://github.com/" target="_blank" title="GitHub">
                 <i class="fab fa-github"></i>
             </a>
         </div>
+
         <div class="divider h-[1px] border-dotted border-b-[2px] border-b-[#224454] my-[40px]"></div>
-        <ul>
+
+        <ul class="text-[#00283A] dark:text-[#dedee0] font-extrabold text-[11px] uppercase tracking-wide">
             <li class="flex justify-between mb-[10px]">
-                <div class="uppercase text-[11px] font-bold tracking-wide text-[#dedee0]">Pays:</div>
-                <div class="uppercase text-[11px] font-bold tracking-wide text-[#919ca1]">France</div>
+                <div>Pays:</div>
+                <div class="font-bold text-[#919ca1]">France</div>
             </li>
             <li class="flex justify-between mb-[10px]">
-                <div class="uppercase text-[11px] font-bold tracking-wide text-[#dedee0]">Ville:</div>
-                <div class="uppercase text-[11px] font-bold tracking-wide text-[#919ca1]">Zoufftgen</div>
+                <div>Ville:</div>
+                <div class="font-bold text-[#919ca1]">Zoufftgen</div>
             </li>
             <li class="flex justify-between mb-[10px]">
-                <div class="uppercase text-[11px] font-bold tracking-wide text-[#dedee0]">Age:</div>
-                <div class="uppercase text-[11px] font-bold tracking-wide text-[#919ca1]">36 ans</div>
+                <div>Age:</div>
+                <div class="font-bold text-[#919ca1]">36 ans</div>
             </li>
         </ul>
         <div class="divider h-[1px] border-dotted border-b-[2px] border-b-[#224454] my-[40px]"></div>

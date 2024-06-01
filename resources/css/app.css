@@ -2,15 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body * {
-    @apply transition-colors duration-500;
+* {
+    @apply transition-colors duration-1000 ease-in-out;
 }
 
 body {
     height: 100vh;
-    background-color: #00151f;
-    padding: 1rem;
     margin: 0;
     position: relative;
     font-family: "Inter", sans-serif;
+    @apply bg-gray-100 dark:bg-[#00151f];
+}
+
+@media (min-width: 1024px) {
+    padding: 1rem;
 }

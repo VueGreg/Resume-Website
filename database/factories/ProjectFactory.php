@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\experience;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class ProjectFactory extends Factory
     {
         return [
             'name' => fake()->sentence(2),
+            'id_experience' => experience::inRandomOrder()->first()->id,
             'created_date' => fake()->date(),
             'url_image' => fake()->imageUrl(),
             'alt_image' => fake()->text(100),

@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('technologies', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('id_category');
-            $table->text('url_image');
-            $table->text('alt_image');
-            $table->timestamps();
+        Schema::table('technologies', function (Blueprint $table) {
+            $table->foreign('id_category')->references('id')->on('categories');
         });
     }
 
@@ -26,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('technologies');
+        Schema::table('technologies', function (Blueprint $table) {
+            $table->dropForeign(['id_category']);
+            $table->dropColumn('id_category');
+        });
     }
 };
