@@ -2,7 +2,7 @@
 
     import axios from 'axios';
     import { ref, onMounted } from 'vue';
-    import { useRouter } from 'vue-router';
+    import { useRouter, RouterLink } from 'vue-router';
     import LayoutPage from '../Layout/LayoutPage.vue';
     import Card from '../components/card.vue';
     import Carousel from '../components/carousel.vue';
@@ -12,19 +12,9 @@
     const skillsPart2 = ref([]);
     const router = useRouter();
 
-    const getResumes = async() => {
-        try {
-            const response = await axios.get('http://resumewolff.test/api/curriculum');
-            resumes.value = response.data;
-
-            const skills = response.data.skills;
-            skillsPart1.value = skills.slice(0, Math.ceil(skills.length /2));
-            skillsPart2.value = skills.slice(Math.ceil(skills.length /2), skills.length);
-
-        } catch (error) {
-            console.error('Error fetching resume:', error);
-        }
-    };
+    const props = defineProps({
+        data: Object,
+    })
 
     const getWidth = (projectsCount) => {
         return (projectsCount * 100 / resumes.value.countProjects) + '%';
@@ -39,10 +29,16 @@
     };
 
     const goToSkills = () => {
-        router.push({ name: 'skills' })
+        router.push({ name: 'skills' , params: { data: props.data }})
     }
 
-    onMounted(getResumes);
+    onMounted(() => {
+        resumes.value = props.data;
+
+        const skills = props.data.skills;
+        skillsPart1.value = skills.slice(0, Math.ceil(skills.length /2));
+        skillsPart2.value = skills.slice(Math.ceil(skills.length /2), skills.length);
+    });
 
 </script>
 
@@ -137,15 +133,16 @@
             </h5>
             <div class="flex flex-wrap flex-col lg:flex-row justify-between items-center w-full lg:gap-8">
                 <div class="w-full lg:w-[48%] m-auto" v-for="experience in resumes.experiences" :key="experience.id">
+                    <RouterLink :to="`/experience/${experience.slug}`">
                     <Card :title="experience.title" :url_image="experience.image" :alt_image="experience.alt" :text="experience.description">
                         <template #other>
                             <p>Du {{ experience.start_date }} au {{ experience.end_date }}</p>
                             <h5>Chez {{ experience.business.name }}</h5>
                         </template>
                     </Card>
+                    </RouterLink>
                 </div>
             </div>
-
         </template>
     </LayoutPage>
 </template>

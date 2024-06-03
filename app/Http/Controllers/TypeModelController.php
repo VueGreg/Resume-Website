@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\information;
-use App\Http\Requests\StoreinformationRequest;
-use App\Http\Requests\UpdateinformationRequest;
-use App\Http\Resources\InformationResource;
+use App\Models\TypeModel;
+use App\Http\Requests\StoreTypeModelRequest;
+use App\Http\Requests\UpdateTypeModelRequest;
 
-class InformationController extends Controller
+class TypeModelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return InformationResource::collection(information::all());
+        //
     }
 
     /**
@@ -28,7 +27,7 @@ class InformationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreinformationRequest $request)
+    public function store(StoreTypeModelRequest $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class InformationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(information $information)
+    public function show(TypeModel $typeModel)
     {
         //
     }
@@ -44,7 +43,7 @@ class InformationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(information $information)
+    public function edit(TypeModel $typeModel)
     {
         //
     }
@@ -52,7 +51,7 @@ class InformationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateinformationRequest $request, information $information)
+    public function update(UpdateTypeModelRequest $request, TypeModel $typeModel)
     {
         //
     }
@@ -60,7 +59,7 @@ class InformationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(information $information)
+    public function destroy(TypeModel $typeModel)
     {
         //
     }

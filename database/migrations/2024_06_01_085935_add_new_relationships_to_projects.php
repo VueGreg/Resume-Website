@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('technologies', function (Blueprint $table) {
-            $table->foreign('id_category')->references('id')->on('categories');
+        Schema::table('projects', function (Blueprint $table) {
+            $table->foreign('id_type_models')->references('id')->on('type_models');
         });
     }
 
@@ -21,10 +21,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('technologies', function (Blueprint $table) {
-            if (Schema::hasColumn('technologies', 'id_category')) {
-                $table->dropForeign(['id_category']);
-                $table->dropColumn('id_category');
+        Schema::table('projects', function (Blueprint $table) {
+            if (Schema::hasColumn('projects', 'id_type')) {
+                $table->dropForeign(['id_type']);
+                $table->dropColumn('id_type');
             }
         });
     }

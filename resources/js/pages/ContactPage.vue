@@ -23,10 +23,10 @@
 </script>
 
 <template>
-    <LayoutPage title="Des questions ? Contactez moi" textButton="Revenir à l'accueil">
+    <LayoutPage title="Des questions ? Contactez moi" textButton="Revenir à l'accueil" link="home">
         <template #content>
             <div class="flex flex-col lg:flex-row justify-around items-center lg:gap-8" v-for="information in informations" :key="information.id">
-                <Card title="Téléphone" url_image="https://trueman.bslthemes.com/wp-content/uploads/2021/11/icon-5w.svg" :withLink="false" class="w-full h-[200px] text-[#919ca1]">
+                <Card title="Téléphone" url_image="https://trueman.bslthemes.com/wp-content/uploads/2021/11/icon-5w.svg" :withLink="false" class="w-full h-auto text-[#919ca1]">
                     <template #other>
                         <div class="flex text-sm">
                             <h5 class="uppercase font-semibold tracking-wide mr-2 text-[#dedee0]">Mobile:</h5>
@@ -34,7 +34,7 @@
                         </div>
                     </template>
                 </Card>
-                <Card title="Messagerie" url_image="https://trueman.bslthemes.com/wp-content/uploads/2021/11/icon-6w.svg" :withLink="false" class="w-full h-[200px] text-[#919ca1]">
+                <Card title="Messagerie" url_image="https://trueman.bslthemes.com/wp-content/uploads/2021/11/icon-6w.svg" :withLink="false" class="w-full h-auto text-[#919ca1]">
                     <template #other>
                         <div class="flex text-sm">
                             <h5 class="uppercase font-semibold tracking-wide mr-2 text-[#dedee0]">e-mail:</h5>

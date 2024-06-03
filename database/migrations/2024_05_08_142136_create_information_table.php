@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('country');
             $table->string('phone');
+            $table->date('birthday');
             $table->string('email')->unique();
             $table->string('github')->nullable();
             $table->string('linkedin')->nullable();

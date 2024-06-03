@@ -1,13 +1,30 @@
 <script setup>
 
-    import { onMounted } from 'vue';
+    import { onMounted, ref } from 'vue';
     import useProfil from './services/_profil.js';
+    import { useRouter } from 'vue-router';
 
     const { updateText, displayedText } = useProfil();
     const texts = ['Développeur Web','Dev web mobile', 'Passionné', 'Créatif'];
+    const router = useRouter();
+
+    const props = defineProps({
+        data: Object,
+    })
+
+    const goToContact = () => {
+        router.push({ name: 'contact'});
+    }
+
+    const getAge = () => {
+        const dateNow = new Date()
+        const calc = props.data.birthday.slice(0, 4)
+        props.data.age = dateNow.getFullYear() - calc;
+    }
 
     onMounted(() => {
         updateText('write', texts);
+        getAge();
     });
 
 </script>
@@ -29,10 +46,10 @@
         <div class="divider h-[1px] border-dotted border-b-[2px] border-b-[#224454] my-[40px]"></div>
 
         <div class="social flex justify-center text-[#00283A] dark:text-[#dedee0]">
-            <a class="mx-[10px]" href="https://linkedin.com" target="_blank" title="Linkedin">
+            <a class="mx-[10px]" :href="data.linkedin" target="_blank" title="Linkedin">
                 <i class="fab fa-linkedin"></i>
             </a>
-            <a class="mx-[10px]" href="https://github.com/" target="_blank" title="GitHub">
+            <a class="mx-[10px]" :href="data.github" target="_blank" title="GitHub">
                 <i class="fab fa-github"></i>
             </a>
         </div>
@@ -41,21 +58,21 @@
 
         <ul class="text-[#00283A] dark:text-[#dedee0] font-extrabold text-[11px] uppercase tracking-wide">
             <li class="flex justify-between mb-[10px]">
-                <div>Pays:</div>
-                <div class="font-bold text-[#919ca1]">France</div>
+                <div>Ville:</div>
+                <div class="font-bold text-[#919ca1]">{{ data.country }}</div>
             </li>
             <li class="flex justify-between mb-[10px]">
-                <div>Ville:</div>
-                <div class="font-bold text-[#919ca1]">Zoufftgen</div>
+                <div>Pays:</div>
+                <div class="font-bold text-[#919ca1]">{{ data.city }}</div>
             </li>
             <li class="flex justify-between mb-[10px]">
                 <div>Age:</div>
-                <div class="font-bold text-[#919ca1]">36 ans</div>
+                <div class="font-bold text-[#919ca1]">{{ data.age }} ans</div>
             </li>
         </ul>
         <div class="divider h-[1px] border-dotted border-b-[2px] border-b-[#224454] my-[40px]"></div>
         <div class="text-center">
-            <div class="h-[45px] px-[35px] whitespace-nowrap bg-[#70ba65] text-[#fcfcfe] uppercase text-[11px] font-bold rounded-full inline-flex justify-center items-center hover:bg-[#70ba65]/80 hover:scale-300 duration-110 transition-all cursor-pointer">
+            <div @click.prevent="goToContact" class="h-[45px] px-[35px] whitespace-nowrap bg-[#70ba65] text-[#fcfcfe] uppercase text-[11px] font-bold rounded-full inline-flex justify-center items-center hover:bg-[#70ba65]/80 hover:scale-300 duration-110 transition-all cursor-pointer">
                 Me contacter
                 <i class="fas fa-envelope mt-[-2px] ml-3"></i>
             </div>

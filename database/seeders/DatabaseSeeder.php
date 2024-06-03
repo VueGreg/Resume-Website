@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             TechnologySeeder::class,
             SkillSeeder::class,
             ExperienceSeeder::class,
+            TypeModelSeeder::class,
             ProjectSeeder::class,
             SkillProjectSeeder::class,
             TechnologyProjectSeeder::class,

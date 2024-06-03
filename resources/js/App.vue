@@ -4,9 +4,11 @@
     import { RouterView, useRoute } from 'vue-router';
     import profil from './components/profil.vue';
     import navbar from './components/navbar.vue';
+    import useAxios from './axios';
 
     const route = useRoute();
     const isVisible = ref(true);
+    const { datas, errors, getResume, isLoading } = useAxios();
 
     const handleScroll = () => {
         const appElement = document.querySelector('.scroll-content');
@@ -56,7 +58,10 @@
         observer.observe(scrollContentElement, { attributes: true, attributeFilter: ['style'] });
     };
 
-    onMounted(observeStyleChanges);
+    onMounted(() => {
+        getResume();
+        observeStyleChanges();
+    });
 
 </script>
 
@@ -80,13 +85,14 @@
             </Transition>
         </div>
     </div>
-    <div class="w-[80%] lg:w-4/5 2xl:w-3/5 m-auto lg:flex lg:justify-between h-full z-10">
-        <profil id="profil" class="lg:w-1/3 z-10"/>
+    <div v-if="isLoading">Chargement du contenu</div>
+    <div v-else class="w-[80%] lg:w-4/5 2xl:w-3/5 m-auto lg:flex lg:justify-between h-full z-10">
+        <profil id="profil" class="lg:w-1/3 z-10" :data="datas.informations[0]"/>
 
         <div class="transition-container lg:w-2/3 relative z-50 top-0 lg:-top-[400px]">
             <RouterView v-slot="{ Component, route }" id="content" class="w-full">
                 <Transition :name="route.meta.transition || 'slide'">
-                    <component :is="Component" :key="route.path"/>
+                    <component :is="Component" :key="route.path" :data="datas"/>
                 </Transition>
             </RouterView>
         </div>

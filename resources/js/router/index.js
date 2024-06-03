@@ -1,10 +1,12 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createWebHistory , createRouter } from 'vue-router'
 
 import HomePage from '../pages/HomePage.vue';
 import ResumePage from '../pages/ResumePage.vue';
 import SkillsPage from '../pages/SkillsPage.vue';
 import ContactPage from '../pages/ContactPage.vue';
 import ProjectPage from '../pages/ProjectPage.vue';
+import ConnexionPage from '../pages/connexionPage.vue';
+import ExperiencePage from '../pages/ExperiencePage.vue';
 
 const routes = [
   { path: '/',
@@ -15,22 +17,32 @@ const routes = [
     name: 'curriculum',
     component: ResumePage,
   },
-  { path: '/project', 
+  { path: '/projets', 
     name: 'project',
     component: ProjectPage,
   },
-  { path: '/skills', 
+  { path: '/competences', 
     name: 'skills',
     component: SkillsPage,
+    props: true,
   },
   { path: '/contact', 
     name: 'contact',
     component: ContactPage,
   },
+  { path: '/connection', 
+    name: 'connexion',
+    component: ConnexionPage,
+  },
+  { path: '/experience/:slug', 
+    name: 'experience',
+    component: ExperiencePage,
+    props: true,
+  },
 ]
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory (),
   routes,
 })
 

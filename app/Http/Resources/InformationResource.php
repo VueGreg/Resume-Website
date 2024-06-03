@@ -29,6 +29,7 @@ class InformationResource extends JsonResource
 			"description" => $this->description,
 			"driving_license" => $this->driving_license,
 			"vehicle" => $this->vehicle,
+			"birthday" => $this->birthday,
         ];
     }
 }

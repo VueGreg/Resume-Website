@@ -20,6 +20,7 @@ class ExperienceResource extends JsonResource
 			"end_date" => $this->end_date,
 			"job" => $this->job,
 			"title" => $this->title,
+            "slug" => $this->slug,
 			"description" => $this->description,
 			"isTraining" => $this->isTraining,
 			"projects" => ProjectResource::collection($this->whenLoaded('projects')),

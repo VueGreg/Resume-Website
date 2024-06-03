@@ -13,9 +13,11 @@ use App\Http\Resources\ExperienceResource;
 use App\Http\Resources\InformationResource;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\TechnologyResource;
+use App\Http\Resources\TypeModelResource;
 use App\Models\Category;
 use App\Models\information;
 use App\Models\technology;
+use App\Models\TypeModel;
 
 class ResumeController extends Controller
 {
@@ -27,7 +29,7 @@ class ResumeController extends Controller
         $skillsCount = Skill::withCount('projects')->get();
         $skillsCount = SkillResource::collection($skillsCount);
 
-        $projects = project::with(['experience', 'skills'])->get();
+        $projects = project::with(['experience', 'skills', 'types'])->get();
         $projects = ProjectResource::collection($projects);
 
         $countProject = project::count();
@@ -37,6 +39,8 @@ class ResumeController extends Controller
 
         $categories = CategoryResource::collection(Category::all());
 
+        $types = TypeModelResource::collection(TypeModel::all());
+
         $informations = InformationResource::collection(information::all());
 
         return Response::json(array(
@@ -45,6 +49,7 @@ class ResumeController extends Controller
             'countProjects' => $countProject,
             'technologies' => $technologiesCount,
             'categories' => $categories,
+            'types' => $types,
             'informations' => $informations,
             'projects' => $projects
         ));

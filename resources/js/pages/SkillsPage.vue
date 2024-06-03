@@ -8,17 +8,13 @@
     const skills = ref([]);
     const search = ref('');
 
-    const getResumes = async() => {
-        try {
-            const response = await axios.get('http://resumewolff.test/api/curriculum');
-            skills.value = response.data.skills;
+    const props = defineProps({
+        data: Object,
+    })
 
-        } catch (error) {
-            console.error('Error fetching resume:', error);
-        }
-    };
-
-    onMounted(getResumes);
+    onMounted(() => {
+        skills.value = props.data.skills
+    });
 
     const filteredSkills = computed(() => {
         if (!search.value) return skills.value;

@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\business;
-use App\Models\project;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,11 +18,16 @@ class ExperienceFactory extends Factory
      */
     public function definition(): array
     {
+
+        $title = fake()->sentence(2);
+        $slug = Str::slug($title);
+
         return [
             'start_date' => fake()->date(),
             'end_date' => fake()->date(),
             'job' => fake()->word(),
-            'title' => fake()->sentence(2),
+            'title' => $title,
+            'slug' => $slug,
             'description' => fake()->text(300),
             'isTraining' => fake()->boolean(),
             'id_business' => function () {

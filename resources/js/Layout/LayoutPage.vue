@@ -19,7 +19,6 @@
 
     const handleResize = () => {
         isMobile.value = window.innerWidth <= 1024;
-        console.log(isMobile.value); // Pour le débogage
     };
 
     onMounted(() => {

@@ -19,4 +19,9 @@ class project extends Model
     {
         return $this->belongsTo(experience::class, 'id_experience');
     }
+
+    public function types() 
+    {
+        return $this->belongsTo(TypeModel::class, 'id_type_models');
+    }
 }

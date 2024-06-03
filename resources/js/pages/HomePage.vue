@@ -1,8 +1,9 @@
 <script setup>
 
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
     import LayoutPage from '../Layout/LayoutPage.vue';
     import simpleCard from '../components/simpleCard.vue';
+    import axios from 'axios';
 
     const datas = ref({
         1: {
@@ -19,10 +20,25 @@
         },
     });
 
+    const informations = ref([]);
+
+    const getInformations = async() => {
+        try {
+            const response = await axios.get('http://resumewolff.test/api/curriculum');
+            informations.value = response.data.informations[0];
+        } catch (error) {
+            console.error(error);
+        }
+    } 
+
+    onMounted(() => {
+        getInformations()
+    })
+
 </script>
 
 <template>
-    <LayoutPage title="Bienvenue sur mon CV en ligne !" textButton="Me contacter">
+    <LayoutPage title="Bienvenue sur mon CV en ligne !" textButton="Me contacter" link="contact">
         <template #content>
             <div class="lg:flex lg:justify-between gap-4 w-full">
                 <simpleCard v-for="(data, index) in datas" :key="index"  :data="data" class="w-full"/>
@@ -35,7 +51,7 @@
             <div class="description shadow-lg mb-10 block relative bg-[#fcfcfe] dark:bg-[#00283a] text-[#00283a] dark:text-[#dedee0] p-10 rounded-[10px] italic text-base
                     before:contents-[''] before:absolute before:left-[30px] before:-top-2 before:h-2 before:w-[calc(100%-60px)] before:bg-[#00283a] before:rounded-t-[5px] before:opacity-[0.3]"
                     >
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab laborum obcaecati placeat distinctio quasi similique, repellat officiis fugit ullam exercitationem ipsa doloribus dolorum expedita et quae sint. Ipsum, ducimus laudantium?</p>
+                <p>{{ informations.description }}</p>
             </div>
             <h5 class="mb-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
                 <span>Quelques images</span>
