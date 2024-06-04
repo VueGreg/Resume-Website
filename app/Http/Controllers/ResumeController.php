@@ -33,6 +33,7 @@ class ResumeController extends Controller
         $projects = ProjectResource::collection($projects);
 
         $countProject = project::count();
+        $countSkills = Skill::count();
 
         $technologiesCount = technology::with('categories')->withCount('projects')->get();
         $technologiesCount = TechnologyResource::collection($technologiesCount);
@@ -47,6 +48,7 @@ class ResumeController extends Controller
             'experiences' => $experiences,
             'skills' => $skillsCount,
             'countProjects' => $countProject,
+            'countSkills' => $countSkills,
             'technologies' => $technologiesCount,
             'categories' => $categories,
             'types' => $types,

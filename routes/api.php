@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\ExperienceController;
-use App\Http\Controllers\InformationController;
-use App\Http\Controllers\ResumeController;
-use App\Http\Controllers\SkillController;
 use App\Models\project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\ResumeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +18,3 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/curriculum', [ResumeController::class, 'index']);
-Route::get('/profil', [InformationController::class, 'index']);

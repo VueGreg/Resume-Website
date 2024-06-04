@@ -1,38 +1,34 @@
 <script setup>
 
-    import { ref, onMounted } from 'vue';
+    import { ref, onMounted, watch } from 'vue';
     import LayoutPage from '../Layout/LayoutPage.vue';
     import simpleCard from '../components/simpleCard.vue';
-    import axios from 'axios';
 
-    const datas = ref({
+    const cards = ref({
         1: {
             count: 1,
             text: "Experience de code",
         },
         2: {
             count: 5,
-            text: "Projets terminés",
+            text: "Projets",
         },
         3: {
             count: 3,
-            text: "Projets en cours"
+            text: "Compétences aquis"
         },
     });
 
+    const props = defineProps({
+        data: Object,
+    })
+
     const informations = ref([]);
 
-    const getInformations = async() => {
-        try {
-            const response = await axios.get('http://resumewolff.test/api/curriculum');
-            informations.value = response.data.informations[0];
-        } catch (error) {
-            console.error(error);
-        }
-    } 
-
     onMounted(() => {
-        getInformations()
+        informations.value = props.data.informations[0];
+        cards.value[2].count = props.data.countProjects;
+        cards.value[3].count = props.data.countSkills;
     })
 
 </script>
@@ -41,7 +37,7 @@
     <LayoutPage title="Bienvenue sur mon CV en ligne !" textButton="Me contacter" link="contact">
         <template #content>
             <div class="lg:flex lg:justify-between gap-4 w-full">
-                <simpleCard v-for="(data, index) in datas" :key="index"  :data="data" class="w-full"/>
+                <simpleCard v-for="(data, index) in cards" :key="index"  :data="data" class="w-full"/>
             </div>
             <h5 class="mb-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
                 <span>Description</span>
