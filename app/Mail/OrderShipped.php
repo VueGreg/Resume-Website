@@ -32,7 +32,7 @@ class OrderShipped extends Mailable
     {
         return new Envelope(
             from: env('MAIL_FROM_ADDRESS'),
-            subject: "Test d'envoi de mail",
+            subject: "Message de l'application ResumeWOLFF",
         );
     }
 
