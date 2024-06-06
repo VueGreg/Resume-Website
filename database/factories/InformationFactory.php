@@ -38,6 +38,7 @@ class InformationFactory extends Factory
                                 Stack',
             'linkedin' => 'https://www.linkedin.com/in/gregory-wolff-81b798290',
             'github' => 'https://github.com/VueGreg',
+            'tokenAPI' => 'D8gYd4Fe15cKAYW9gtEZvD4MUxwlpjYHK3HLH7pS9V5DsVbKto9q3PGYzT7zAo1g' //token de test
         ];
     }
 }

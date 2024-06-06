@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\FileDownloadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,8 @@ use App\Http\Controllers\EmailController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');});
 
 Route::post('/mail', [EmailController::class, 'store']);
+
+Route::get('/download-cv', [FileDownloadController::class, 'download']);

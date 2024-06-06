@@ -28,6 +28,7 @@ return new class extends Migration
             $table->boolean('driving_license');
             $table->boolean('vehicle');
             $table->string('password')->unique();
+            $table->string('tokenAPI')->unique();
             $table->timestamps();
         });
     }

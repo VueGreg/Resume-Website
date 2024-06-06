@@ -5,10 +5,11 @@
     import profil from './components/profil.vue';
     import navbar from './components/navbar.vue';
     import useAxios from './axios';
+    import Modal from './components/Modal.vue';
 
     const route = useRoute();
     const isVisible = ref(true);
-    const { datas, errors, getResume, isLoading } = useAxios();
+    const { datas, errors, getResume, isLoading, resetIsLoading } = useAxios();
 
     const handleScroll = () => {
         const appElement = document.querySelector('.scroll-content');
@@ -85,7 +86,15 @@
             </Transition>
         </div>
     </div>
-    <div v-if="isLoading">Chargement du contenu</div>
+    <div v-if="isLoading" @close="resetIsLoading">
+        <Modal :show="isLoading">
+            <template #default>
+                <div class="h-[10vh] flex justify-center items-center">
+                    <h1 class="font-bold text-2xl">Chargement en cours...</h1>
+                </div>
+            </template>
+        </Modal>
+    </div>
     <div v-else class="w-[80%] lg:w-4/5 2xl:w-3/5 m-auto lg:flex lg:justify-between h-full z-10">
         <profil id="profil" class="lg:w-1/3 z-10" :data="datas.informations[0]"/>
 

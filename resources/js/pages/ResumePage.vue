@@ -1,6 +1,5 @@
 <script setup>
 
-    import axios from 'axios';
     import { ref, onMounted } from 'vue';
     import { useRouter, RouterLink } from 'vue-router';
     import LayoutPage from '../Layout/LayoutPage.vue';
@@ -101,9 +100,15 @@
                 </div>
             </div>
 
+            <h5 class="mb-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
+                <span>Technologies</span>
+                <span class="h-[1px] w-full border-dotted border-b-[2px] border-b-gray-300 dark:border-b-[#224454] m-2"></span>
+                <span class="text-[#919ca1] text-[11px]">01</span>
+            </h5>
+
             <!-- Technologies content -->
             <div class="flex flex-wrap flex-col lg:flex-row justify-between w-full lg:gap-8">
-                <div v-for="category in resumes.categories" :key="category.id" class="w-full lg:w-[48%] m-auto">
+                <div v-for="category in resumes.categories" :key="category.id" class="w-full lg:w-[48%] m-auto lg:m-0">
                     <Card :title="category.name" :withLink="false" class="h-auto">
                         <template #other>
                             <div v-for="technology in resumes.technologies">
@@ -129,7 +134,7 @@
             <h5 class="mb-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
                 <span>Expériences</span>
                 <span class="h-[1px] w-full border-dotted border-b-[2px] border-b-gray-300 dark:border-b-[#224454] m-2"></span>
-                <span class="text-[#919ca1] text-[11px]">01</span>
+                <span class="text-[#919ca1] text-[11px]">02</span>
             </h5>
             <div class="flex flex-wrap flex-col lg:flex-row justify-between items-center w-full lg:gap-8">
                 <div class="w-full lg:w-[48%] m-auto" v-for="experience in resumes.experiences" :key="experience.id">

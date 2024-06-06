@@ -82,7 +82,7 @@
             </h5>
             <Card :withLink="false" class="transition-height duration-300 ease-in-out h-auto p-8">
                 <template #other>
-                    <form class="flex flex-col justify-around h-full text-xs lg:text-sm">
+                    <form class="flex flex-col justify-around h-full text-xs lg:text-sm lg:gap-4">
                         <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 my-2">
                             <div class="flex flex-col w-full">
                                 <Textput modelValue="Nom" v-model="mailing.name"/>

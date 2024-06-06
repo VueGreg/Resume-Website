@@ -1,9 +1,7 @@
 <?php
 
-use App\Models\project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ResumeController;
 
 /*
@@ -17,4 +15,4 @@ use App\Http\Controllers\ResumeController;
 |
 */
 
-Route::get('/curriculum', [ResumeController::class, 'index']);
+Route::middleware('api.token')->get('/curriculum', [ResumeController::class, 'index']);

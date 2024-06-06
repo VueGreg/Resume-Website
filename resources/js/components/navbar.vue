@@ -3,12 +3,14 @@
     import { RouterLink } from 'vue-router';
     import { ref } from 'vue';
     import { useDark, useToggle } from "@vueuse/core";
+    import useNavbar from './services/_navbar';
 
     const isDark = useDark({
         disableTransition: false,
     });
     const toggleDark = useToggle(isDark);
     const isOpen = ref(false);
+    const { getPDF, errors } = useNavbar();
 
     const elementLink = ref({
         1: { name: "Accueil", link: 'home' },
@@ -21,6 +23,10 @@
     const switchMode = () => {
         toggleDark();
     };
+
+    const getResume = () => {
+        getPDF();
+    }
 
 </script>
 
@@ -61,7 +67,7 @@
                     </label>
                     <i class="far fa-moon text-[#7a7a7a] text-[11px] mx-[7px] dark:text-[#dedee0]"></i>
                 </div>
-                <div class="ml-[30px] h-[40px] px-[25px] whitespace-nowrap bg-[#70ba65] text-[#fcfcfe] uppercase text-[11px] font-bold rounded-full inline-flex justify-center items-center hover:bg-[#70ba65]/80 hover:scale-300 duration-110 transition-all cursor-pointer">
+                <div @click.prevent="getResume" class="ml-[30px] h-[40px] px-[25px] whitespace-nowrap bg-[#70ba65] text-[#fcfcfe] uppercase text-[11px] font-bold rounded-full inline-flex justify-center items-center hover:bg-[#70ba65]/80 hover:scale-300 duration-110 transition-all cursor-pointer">
                     Télécharger CV 
                     <i class="fas fa-arrow-down mt-[-2px] ml-3"></i>
                 </div>

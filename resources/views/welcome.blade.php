@@ -20,5 +20,6 @@
 
         <script>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');</script>
         <script src="https://kit.fontawesome.com/a0d5f723cd.js" crossorigin="anonymous"></script>
+        <script> window.APP_CONFIG = {API_TOKEN: "{{ env('API_TOKEN') }}"};</script>
     </body>
 </html>
