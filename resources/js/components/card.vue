@@ -23,7 +23,7 @@
 
 <template>   
     <div class="p-[40px] bg-[#fcfcfe] dark:bg-[#00283a] rounded-lg shadow-lg mb-10 relative text-[#00283a] dark:text-[#dedee0] h-[300px] flex flex-col justify-between
-                before:contents-[''] before:absolute before:left-8 before:-top-2 before:h-2 before:w-[calc(100%-60px)] before:bg[#f4f5f7] before:dark:bg-[#00283a] before:rounded-t-[5px] before:opacity-[0.3]"
+                before:contents-[''] before:absolute before:left-8 before:-top-2 before:h-2 before:w-[calc(100%-60px)] before:bg-[#919ca1] before:dark:bg-[#00283a] before:rounded-t-[5px] before:opacity-[0.3]"
                 >
         <div v-if="props.url_image" class="w-12 h-12 mb-5 relative">
             <div class="icon">

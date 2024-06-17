@@ -18,7 +18,7 @@ export default function useContact () {
         await delay(1000);
 
         try {
-            const response = await axios.post('http://resumewolff.test/mail', data);
+            const response = await axios.post('/mail', data);
             mailResponse.value = response.data;
             errors.name = '';
             errors.surname = '';

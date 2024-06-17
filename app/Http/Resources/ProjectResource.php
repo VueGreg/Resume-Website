@@ -20,10 +20,12 @@ class ProjectResource extends JsonResource
             'name' => $this->name,
             "image" => $this->url_image,
             'alt' => $this->alt_image,
+            'created_date' => $this->created_date,
             "github" => $this->github,
             "website" => $this->url_website,
             "experience" => new ExperienceResource($this->whenLoaded('experience')),
             "skills" => SkillResource::collection($this->whenLoaded('skills')),
+            "technologies" => TechnologyResource::collection($this->whenLoaded('technologies')),
             "type" => new TypeModelResource($this->whenLoaded('types')),
         ];
         // return parent::toArray($request);

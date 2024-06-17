@@ -9,7 +9,7 @@ export default function useNavbar () {
     const getPDF = async() => {
 
         await axios({
-            url: 'http://resumewolff.test/download-cv',
+            url: '/download-cv',
             method: 'GET',
             responseType: 'blob',
             headers: {

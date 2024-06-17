@@ -59,11 +59,11 @@
         <ul class="text-[#00283A] dark:text-[#dedee0] font-extrabold text-[11px] uppercase tracking-wide">
             <li class="flex justify-between mb-[10px]">
                 <div>Ville:</div>
-                <div class="font-bold text-[#919ca1]">{{ data.country }}</div>
+                <div class="font-bold text-[#919ca1]">{{ data.city }}</div>
             </li>
             <li class="flex justify-between mb-[10px]">
                 <div>Pays:</div>
-                <div class="font-bold text-[#919ca1]">{{ data.city }}</div>
+                <div class="font-bold text-[#919ca1]">{{ data.country }}</div>
             </li>
             <li class="flex justify-between mb-[10px]">
                 <div>Age:</div>

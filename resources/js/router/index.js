@@ -7,6 +7,7 @@ import ContactPage from '../pages/ContactPage.vue';
 import ProjectPage from '../pages/ProjectPage.vue';
 import ConnexionPage from '../pages/connexionPage.vue';
 import ExperiencePage from '../pages/ExperiencePage.vue';
+import LegalPage from '../pages/LegalPage.vue';
 
 const routes = [
   { path: '/',
@@ -39,13 +40,21 @@ const routes = [
     component: ExperiencePage,
     props: true,
   },
+  { path: '/legal', 
+    name: 'legal',
+    component: LegalPage,
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory (),
   routes,
   scrollBehavior(to, from, savedPosition) {
-      return { top: 0 };
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
   },
 })
 

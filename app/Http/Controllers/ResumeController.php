@@ -23,13 +23,17 @@ class ResumeController extends Controller
 {
     public function index()
     {
-        $experiences = experience::with(['projects', 'business'])->get();
+        $experiences = Experience::with(['projects' => function ($query) {
+            $query->orderBy('created_date', 'desc');
+        }, 'business', 'projects.skills', 'projects.technologies'])->get();
         $experiences = ExperienceResource::collection($experiences);
 
         $skillsCount = Skill::withCount('projects')->get();
         $skillsCount = SkillResource::collection($skillsCount);
 
-        $projects = project::with(['experience', 'skills', 'types'])->get();
+        $projects = project::with(['experience', 'skills', 'types', 'technologies'])
+            ->orderByDesc('created_date')
+            ->get();
         $projects = ProjectResource::collection($projects);
 
         $countProject = project::count();

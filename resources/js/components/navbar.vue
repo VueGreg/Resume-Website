@@ -17,7 +17,7 @@
         2: { name: "Curriculum", link: 'curriculum' },
         3: { name: "Projets", link: 'project' },
         4: { name: "Contact", link: 'contact' },
-        5: { name: "Connection", link: 'connexion' }
+        5: { name: "Connexion", link: 'connexion' }
     });
 
     const switchMode = () => {

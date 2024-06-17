@@ -9,10 +9,9 @@ const apiToken = window.APP_CONFIG.API_TOKEN;
 export default function useProfil() {
 
     const getResume = async() => {
-
         isLoading.value = true;
         try {
-            const response = await axios.get('http://resumewolff.test/api/curriculum', {
+            const response = await axios.get('/api/curriculum', {
                 headers: {
                     'Authorization': `Bearer ${apiToken}`
                 }

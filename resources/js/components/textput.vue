@@ -30,7 +30,7 @@
             ref="input"
             :placeholder="modelValue"
             @input="$emit('update:modelValue', $event.target.value)"
-            class="text-[#dedee0] block w-full h-10 rounded-md bg-gray-100 shadow-inset dark:bg-[#02162b] p-5"
+            class="dark:text-[#dedee0] block w-full h-10 rounded-md bg-gray-100 shadow-inset dark:bg-[#02162b] p-5"
     >
 
 </template>

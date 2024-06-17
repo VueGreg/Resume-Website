@@ -28,6 +28,7 @@ class EmailRequest extends FormRequest
             'surname' => 'required|max:255',
             'mail' => 'required|regex:/^.+@.+$/i',
             'message' => 'required',
+            'confirm' => 'accepted',
         ];
     }
 
@@ -41,6 +42,7 @@ class EmailRequest extends FormRequest
             'mail.required' => 'L\'adresse e-mail est requise.',
             'mail.regex' => 'Le format de l\'adresse e-mail est invalide.',
             'message.required' => 'Le message est requis.',
+            'confirm.accepted' => 'Les mentions légales doivent être acceptées',
         ];
     }
 

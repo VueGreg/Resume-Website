@@ -7,13 +7,13 @@
 </script>
 
 <template>
-    <LayoutPage title="Connection au tableau de bord" textButton="Revenir à l'accueil" link="home">
+    <LayoutPage title="Connexion au tableau de bord" textButton="Revenir à l'accueil" link="home">
         <template #content>
             <Card :withLink="false" class="h-auto">
                 <template #other>
                     <div class="flex flex-col items-center w-full gap-8">
-                    <h2 class="text-3xl">Connection</h2>
-                    <p class="text-center text-sm">Le tableau de bord est en court de réalisation, revenez prochainement pour une démonstration...<br> A très vite  <i class="fa-solid fa-face-laugh text-yellow-400"></i></p>
+                    <h2 class="text-3xl">Connexion</h2>
+                    <p class="text-center text-sm">Le tableau de bord est en cours de réalisation, revenez prochainement pour une démonstration...<br> A très vite  <i class="fa-solid fa-face-laugh text-yellow-400"></i></p>
                     <form class="w-full">
                         <div class="flex flex-col gap-8 lg:w-1/2 lg:m-auto">
                             <Textput modelValue="e-mail" type="email"/>

@@ -16,7 +16,7 @@ use App\Http\Controllers\FileDownloadController;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
+Route::get('/{any}', function () {return view('welcome');})->where('any', '.*');
 
 Route::post('/mail', [EmailController::class, 'store']);
 

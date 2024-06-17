@@ -2,11 +2,12 @@
     
     import { useRouter } from 'vue-router';
     import { onMounted, onUnmounted, ref } from 'vue';
+    import Footer from '../components/Footer.vue';
 
     defineProps({
         title: String,
         link: String,
-        textButton: String
+        textButton: String,
     })
 
     const router = useRouter();
@@ -65,6 +66,16 @@
         </div>
 
         <slot name="content"></slot>
+
+
+        <h5 class="mb-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
+            <span></span>
+            <span class="h-[1px] w-full border-dotted border-b-[2px] border-b-gray-300 dark:border-b-[#224454] m-2"></span>
+            <span class="text-[#919ca1] text-[11px]"></span>
+        </h5>
+        
+        <Footer class="h-auto">
+        </Footer>
         
     </div>
 
