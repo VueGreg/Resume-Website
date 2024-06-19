@@ -3,6 +3,7 @@
     import { useRouter } from 'vue-router';
     import { onMounted, onUnmounted, ref } from 'vue';
     import Footer from '../components/Footer.vue';
+    import scrollbar from '../smoothScrollbar';
 
     defineProps({
         title: String,
@@ -22,8 +23,16 @@
         isMobile.value = window.innerWidth <= 1024;
     };
 
+    const topPosition = ref(0);
+
+    const updateTopPosition = () => {
+        topPosition.value = scrollbar.scrollTop;
+    };
+
     onMounted(() => {
         window.addEventListener('resize', handleResize);
+        updateTopPosition();
+        scrollbar.addListener(updateTopPosition)
     });
 
     onUnmounted(() => {
@@ -74,9 +83,33 @@
             <span class="text-[#919ca1] text-[11px]"></span>
         </h5>
         
-        <Footer class="h-auto">
-        </Footer>
+        <Transition name="slide-fade">
+            <Footer v-if="topPosition > 1000" class="h-auto">
+            </Footer>
+        </Transition>
         
     </div>
 
 </template>
+
+<style scoped>
+
+    .slide-fade-leave-active,
+    .slide-fade-enter-active {
+        transition: all .3s cubic-bezier(1, 0.5, 0.8, 1);
+    }
+
+    .slide-fade-enter-from,
+    .slide-fade-leave-to {
+        opacity: 0;
+        transform: translateX(-100%);
+        max-height: 0px;
+    }
+
+    .slide-fade-leave-from,
+    .slide-fade-enter-to {
+        max-height: 500px;
+        opacity: 0;
+    }
+
+</style>

@@ -21,6 +21,7 @@ class ProjectResource extends JsonResource
             "image" => $this->url_image,
             'alt' => $this->alt_image,
             'created_date' => $this->created_date,
+            'description' => $this->description,
             "github" => $this->github,
             "website" => $this->url_website,
             "experience" => new ExperienceResource($this->whenLoaded('experience')),

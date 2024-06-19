@@ -7,6 +7,7 @@
     import Textput from '../components/textput.vue';
     import Modal from '../components/Modal.vue';
     import useContact from './services/_contact';
+    import scrollbar from '../smoothScrollbar';
 
     const informations = ref([]);
     const { postMail, mailResponse, modalVisible, waiting, errors } = useContact();
@@ -30,6 +31,7 @@
 
     onMounted(() => {
         informations.value = props.data.informations;
+        scrollbar.scrollTop = 0;
     });
 
 </script>

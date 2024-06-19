@@ -12,7 +12,7 @@
                 <div class="flex flex-col justify-center text-center lg:text-left">
                     <span><i class="fa-regular fa-copyright"></i>2024 Réalisé par grégory WOLFF</span>
                 </div>
-                <ul class="flex flex-col list-disc underline decoration-3">
+                <ul class="flex gap-4 tracking-widest underline decoration-3 text-[#70ba65]">
                     <li><RouterLink :to="{ name: 'legal' }">Mentions légales</RouterLink></li>
                     <li><RouterLink to="#">Télécharger le CV en .pdf</RouterLink></li>
                     <li><RouterLink :to="{ name: 'contact' }">Contacter</RouterLink></li>

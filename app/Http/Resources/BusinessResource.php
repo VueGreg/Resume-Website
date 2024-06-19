@@ -23,6 +23,7 @@ class BusinessResource extends JsonResource
             "country" => $this->country,
             "image" => $this->url_image,
             "alt" => $this->alt_image,
+            "website" => $this->url_website,
         ];
     }
 }

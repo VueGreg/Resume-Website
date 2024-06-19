@@ -19,6 +19,10 @@
             type: Number,
             default: 8000,
         },
+        height : {
+            type: String,
+            default: 160,
+        }
     });
 
     const sliderNumber = ref(0);
@@ -68,8 +72,8 @@
 </script>
 
 <template>
-    <div id="default-carousel" class="relative w-full">
-        <div class="relative h-40 overflow-hidden rounded-lg">
+    <div id="default-carousel" class="relative w-full" :class="'h-[' + height + 'px]'">
+        <div class="relative h-40 overflow-hidden rounded-lg" :class="'h-[' + height + 'px]'">
             <TransitionGroup name="list" tag="div">
             <div v-for="(item, index) in items" :key="index" :id="'carousel-item-' + index" v-show="index === sliderNumber" class="absolute top-10 w-full h-full flex items-center justify-center">
                 <div class="absolute h-full m-auto -translate-x-1/2 -translate-y-1/2 top-[25%] left-1/2 rounded-lg shadow-lg p-10 bg-[#fcfcfe] dark:bg-[#00283a] flex justify-center items-center"
@@ -83,7 +87,7 @@
 
         <!-- Slider indicators -->
         <div v-if="withIndicator" class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-            <button v-for="(item, index) in items" :key="index" type="button" class="w-3 h-3 rounded-full" :class="{'bg-white': index === sliderNumber}" @click="sliderNumber = index; updateSlides()"></button>
+            <button v-for="(item, index) in items" :key="index" type="button" class="w-3 h-3 rounded-full" :class="index === sliderNumber ? 'bg-slate-300' : 'bg-slate-600'" @click="sliderNumber = index; updateSlides()"></button>
         </div>
 
         <!-- Slider controls -->

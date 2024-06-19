@@ -1,11 +1,15 @@
 <script setup>
 
+    import { onMounted } from 'vue';
     import LayoutPage from '../Layout/LayoutPage.vue'
     import card from '../components/card.vue';
+    import scrollbar from '../smoothScrollbar';
 
     defineProps({
         data: Object,
     })
+
+    onMounted(() => scrollbar.scrollTop = 0);
 
 </script>
 

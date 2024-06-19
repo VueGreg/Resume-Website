@@ -4,6 +4,7 @@
     import LayoutPage from '../Layout/LayoutPage.vue';
     import Card from '../components/card.vue';
     import Textput from '../components/textput.vue';
+    import scrollbar from '../smoothScrollbar';
 
     const skills = ref([]);
     const search = ref('');
@@ -13,7 +14,8 @@
     })
 
     onMounted(() => {
-        skills.value = props.data.skills
+        skills.value = props.data.skills;
+        scrollbar.scrollTop = 0;
     });
 
     const filteredSkills = computed(() => {

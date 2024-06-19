@@ -24,7 +24,7 @@
 
     const changeFormatDate = (dateString) => {
         const date = new Date(dateString);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' }
+        const options = { year: 'numeric', month: 'long' }
         return date.toLocaleDateString('fr-FR', options);
     }
 
