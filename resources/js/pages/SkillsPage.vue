@@ -42,8 +42,15 @@
                 </template>
             </Card>
             <div class="flex flex-wrap justify-between items-center w-full">
-                <div class="w-[48%]" v-for="skill in filteredSkills" :key="skill.id">
-                    <Card :title="skill.name" :url_image="skill.image" :alt_image="skill.alt" :withLink="false" class="h-auto"/>
+                <div class="lg:w-[48%] w-full" v-for="skill in filteredSkills" :key="skill.id">
+                    <Card :withLink="false" style="padding: 0.5rem;" class="h-auto">
+                        <template #other>
+                            <div class="flex justify-center items-center text-sm gap-5 p-8">
+                                <img :src="skill.image" :alt="skill.alt" class="h-[50px] w-[50px] object-cover object-center">
+                                <h4>{{ skill.name }}</h4>
+                            </div>
+                        </template>
+                    </Card>
                 </div>
             </div>
         </template>

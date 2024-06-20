@@ -173,6 +173,7 @@
                 <span class="h-[1px] w-full border-dotted border-b-[2px] border-b-gray-300 dark:border-b-[#224454] m-2"></span>
                 <span class="text-[#919ca1] text-[11px]">02</span>
             </h5>
+
             <!-- Experiences content -->
             <TransitionGroup name="list" tag="div" class="flex flex-wrap flex-col lg:flex-row justify-between items-center w-full lg:gap-8">
                 <div class="w-full lg:w-[48%] m-auto" v-for="experience in resumesExp" :key="experience.id">
@@ -197,7 +198,7 @@
                 </div>
             </TransitionGroup>
             <div class="text-center" v-if="dateRef == 123">
-                <div @click.prevent="dateRef = 0" class="border-[2px] border-[#00283a] dark:border-[#fcfcfe] bg-transparent text-[#00283a] dark:text-[#fcfcfe] drop-shadow-3xl shadow-lg whitespace-nowrap h-[45px] w-auto uppercase text-[9px] sm:text-[11px] font-bold tracking-wide rounded-[30px] inline-flex px-[35px] mb-20 justify-center items-center cursor-pointer">
+                <div @click.prevent="dateRef = 0" class="border-[2px] border-[#00283a] dark:border-[#fcfcfe] bg-transparent text-[#00283a] dark:text-[#fcfcfe] drop-shadow-3xl shadow-lg whitespace-nowrap h-[45px] w-full lg:w-auto uppercase text-[9px] sm:text-[11px] font-bold tracking-wide rounded-[30px] inline-flex px-[35px] mb-20 justify-center items-center cursor-pointer">
                     Voir les experiences avant ma reconvertion
                     <i class="fa-solid fa-eye mt-[-2px] ml-3"></i>
                 </div>
@@ -238,9 +239,11 @@
         font-size: 0.7rem;
         width: 100px;
         height: 30px;
+        top: 5%;
+        right: -6%;
         background-color: yellow;
         clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
-        transform: translateX(280%) translateY(-100%) rotate(45deg);
+        transform: rotate(45deg);
         box-shadow: 10px 10px 3px rgba(0, 0, 0, 0.5);
     }
 

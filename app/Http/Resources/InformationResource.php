@@ -30,6 +30,9 @@ class InformationResource extends JsonResource
 			"driving_license" => $this->driving_license,
 			"vehicle" => $this->vehicle,
 			"birthday" => $this->birthday,
+			"motivations" => $this->motivation,
+			"facebook" => $this->facebook,
+			"image_profil" => $this->url_profil,
         ];
     }
 }

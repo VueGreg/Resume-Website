@@ -21,7 +21,7 @@
         },
         height : {
             type: String,
-            default: 160,
+            default: 18,
         }
     });
 
@@ -49,6 +49,13 @@
         }
     };
 
+    const setHeight = (height) => {
+        if (window.innerWidth > 600) {
+            return 'height:' + height + 'vh;';
+        }
+        return 'height:' + (height*1.5) + 'vh;';
+    }
+
     onMounted(() => {
         startAutoPlay();
     });
@@ -72,12 +79,12 @@
 </script>
 
 <template>
-    <div id="default-carousel" class="relative w-full" :class="'h-[' + height + 'px]'">
-        <div class="relative h-40 overflow-hidden rounded-lg" :class="'h-[' + height + 'px]'">
+    <div id="default-carousel" class="relative w-full" :style="setHeight(height)">
+        <div class="relative overflow-hidden rounded-lg" :style="setHeight(height)">
             <TransitionGroup name="list" tag="div">
-            <div v-for="(item, index) in items" :key="index" :id="'carousel-item-' + index" v-show="index === sliderNumber" class="absolute top-10 w-full h-full flex items-center justify-center">
-                <div class="absolute h-full m-auto -translate-x-1/2 -translate-y-1/2 top-[25%] left-1/2 rounded-lg shadow-lg p-10 bg-[#fcfcfe] dark:bg-[#00283a] flex justify-center items-center"
-                    :class="autoPlay == true ? 'w-full' : 'w-[80%]'"
+            <div v-for="(item, index) in items" :key="index" :id="'carousel-item-' + index" v-show="index === sliderNumber" class="absolute top-10 w-full flex items-center justify-center" :style="setHeight(height)">
+                <div class="absolute h-full m-auto -translate-x-1/2 -translate-y-1/2 left-1/2 rounded-lg shadow-lg p-10 bg-[#fcfcfe] dark:bg-[#00283a] flex justify-center items-center"
+                    :class="autoPlay == true ? 'w-full top-[25%]' : 'w-[80%] top-[35%] h-[80%]'"
                     >
                     <slot :item="item" :activeIndex="activeIndex"></slot>
                 </div>
@@ -87,14 +94,14 @@
 
         <!-- Slider indicators -->
         <div v-if="withIndicator" class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-            <button v-for="(item, index) in items" :key="index" type="button" class="w-3 h-3 rounded-full" :class="index === sliderNumber ? 'bg-slate-300' : 'bg-slate-600'" @click="sliderNumber = index; updateSlides()"></button>
+            <button v-for="(item, index) in items" :key="index" type="button" class="w-3 h-3 rounded-full" :class="index === sliderNumber ? 'bg-slate-300' : 'bg-slate-600'" @click="sliderNumber = index"></button>
         </div>
 
         <!-- Slider controls -->
         <button 
             @click.prevent="prevSlide" 
             type="button" 
-            class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            class="absolute -top-10 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
             v-if="!autoPlay"
             >
             <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
@@ -108,7 +115,7 @@
         <button 
             @click.prevent="nextSlide" 
             type="button" 
-            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            class="absolute -top-10 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
             v-if="!autoPlay"
             >
             <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">

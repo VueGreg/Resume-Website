@@ -3,8 +3,18 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Découvrez le CV de WOLFF Grégory, avec une expérience en Développement web full-stack. Explorez mon parcours professionnel, mes réalisations et mes projets. Téléchargez mon CV en PDF et contactez-moi pour des opportunités.">
+        <meta name="keywords" content="CV, WOLFF Grégory, Développeur Web Full-stack, Développer une interface utilisateur web dynamique, Développer la partie back-end d'une application web, Intégration des pratiques de sécuritées, expérience professionnelle, projets, réalisations, télécharger CV, opportunités professionnelles">
+        <meta name="author" content="Grégory WOLFF">
+        <meta name="robots" content="index, follow">
+        <meta property="og:title" content="CV de Grégory WOLFF - Développeur Web Full-stack">
+        <meta property="og:description" content="Découvrez le CV de Grégory WOLFF, avec une expérience en Développement web full-stack et des compétences en PHP, Javascript, VUEJS, Angular, Java et Laravel. Explorez mon parcours professionnel, mes réalisations et mes projets. Téléchargez mon CV en PDF et contactez-moi pour des opportunités.">
+        <meta property="og:image" content="http://garagev.parrot.gregory-wolff.com/Moi-removebg-preview.webp">
+        <meta property="og:url" content="https://curriculum.gregory-wolff.com">
+        <meta property="og:type" content="website">
 
-        <title>Curriculum Vitea WOLFF Grégory</title>
+
+        <title>Curriculum Vitea de WOLFF Grégory - Développeur Web Full-stack</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

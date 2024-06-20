@@ -28,6 +28,8 @@
 
     const informations = ref([]);
     const topPosition = ref(0);
+    const motivations = ref('');
+    const isMobile = ref(false);
     //const url = window.APP_CONFIG.APP_URL;
     const url = 'http://garagev.parrot.gregory-wolff.com';
     const testimonies = ref([
@@ -36,26 +38,26 @@
             business: 'L.N.S Service Informatique',
             job: 'Gérant',
             picture: 'lns-logo.webp',
-            testimony: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+            testimony: 'Grégory possède une bonne formation en développement web. Il a également acquis des compétences pratiques avec des frameworks populaires comme Vue.js et des outils de versionnement comme Git. Grégory est une personne très motivée et autonome. Il a montré une grande capacité d\'apprentissage et une curiosité constante pour les nouvelles technologies. Sa capacité à travailler en équipe, à communiquer efficacement et à gérer son temps de manière efficiente en fait un atout précieux. Son enthousiasme et son engagement envers son travail sont contagieux, je le recommande sans hésiter'
         },
-        {
-            author: 'Grégory WOLFF',
-            business: 'COLDEC SARL',
-            job: 'Gérant',
-            picture: 'lns-logo.webp',
-        }
     ]);
 
     const updateTopPosition = () => {
         topPosition.value = scrollbar.scrollTop;
     };
 
+    const splitText = (text) => {
+        motivations.value = text.split(/[\.\?!]\s+/);
+    }
+
     onMounted(() => {
         informations.value = props.data.informations[0];
         cards.value[2].count = props.data.countProjects;
         cards.value[3].count = props.data.countSkills;
+        splitText(informations.value.motivations);
         updateTopPosition();
-        scrollbar.addListener(updateTopPosition)
+        scrollbar.addListener(updateTopPosition);
+        window.innerWidth < 600 ? isMobile.value = true : isMobile.value = false;
     })
 
 </script>
@@ -66,53 +68,78 @@
             <div class="lg:flex lg:justify-between gap-4 w-full">
                 <simpleCard v-for="(data, index) in cards" :key="index"  :data="data" class="w-full"/>
             </div>
-            <h5 class="mb-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
-                <span>Description</span>
-                <span class="h-[1px] w-full border-dotted border-b-[2px] border-b-gray-300 dark:border-b-[#224454] m-2"></span>
-                <span class="text-[#919ca1] text-[11px]">01</span>
-            </h5>
-            <card :withLink="false" class="h-auto italic">
-                <template #other>
-                    <p>{{ informations.description }}</p>
-                </template>
-            </card>
 
-
-            <h5 class="mb-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
-                <span>Quelques images</span>
-                <span class="h-[1px] w-full border-dotted border-b-[2px] border-b-gray-300 dark:border-b-[#224454] m-2"></span>
-                <span class="text-[#919ca1] text-[11px]">02</span>
-            </h5>
-
-            <Transition name="slide-fade">
-                <carousel v-if="topPosition > 250" :items="data.projects" :withIndicator="true" :autoPlay="true" height="400" class="h-auto">
-                    <template #default="{ item }" class="flex items-center">
-                        <img :src="item.image" :alt="item.alt" class="absolute top-[80px] max-h-[300px]">
+            <!-- DESCRIPTION -->
+            <article>
+                <h5 class="mb-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
+                    <span>Description</span>
+                    <span class="h-[1px] w-full border-dotted border-b-[2px] border-b-gray-300 dark:border-b-[#224454] m-2"></span>
+                    <span class="text-[#919ca1] text-[11px]">01</span>
+                </h5>
+                <card :withLink="false" class="h-auto italic">
+                    <template #other>
+                        <p>{{ informations.description }}</p>
                     </template>
-                </carousel>
-            </Transition>
+                </card>
+            </article>
 
-            <h5 class="my-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
-                <span>Recommandations</span>
-                <span class="h-[1px] w-full border-dotted border-b-[2px] border-b-gray-300 dark:border-b-[#224454] m-2"></span>
-                <span class="text-[#919ca1] text-[11px]">03</span>
-            </h5>
 
-            <Transition name="slide-fade">
-                <carousel v-if="topPosition > 700" :items="testimonies" :withIndicator="false" :autoPlay="false" height="400" class="my-10">
-                    <template #default="{ item }">
-                        <div class="flex flex-col items-center absolute top-[100px] dark:text-[#dedee0]">
-                            <h4 class="font-bold text-xl">{{ item.author }}</h4>
-                            <h4 class="font-bold">{{ item.job }}</h4>
-                            <div class="flex gap-4">
-                                <img :src="url + '/' + item.picture" alt="logo" class="rounded-full h-10 w-10">
-                                <p>{{ item.business }}</p>
+            <!-- IMAGES -->
+            <article v-if="!isMobile">
+                <h5 class="mb-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
+                    <span>Quelques images</span>
+                    <span class="h-[1px] w-full border-dotted border-b-[2px] border-b-gray-300 dark:border-b-[#224454] m-2"></span>
+                    <span class="text-[#919ca1] text-[11px]">02</span>
+                </h5>
+                <Transition name="slide-fade">
+                    <carousel v-if="topPosition > 250" :items="data.projects" :withIndicator="true" :autoPlay="true" height="60" class="h-auto p-0">
+                        <template #default="{ item }" class="flex items-center h-auto">
+                            <img :src="item.image" :alt="item.alt" class="absolute top-[30%] lg:top-[25%] max-h-[40vh]">
+                        </template>
+                    </carousel>
+                </Transition>
+            </article>
+
+            <!-- MOTIVATIONS -->
+            <article>
+                <h5 class="my-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
+                    <span>Mes motivations</span>
+                    <span class="h-[1px] w-full border-dotted border-b-[2px] border-b-gray-300 dark:border-b-[#224454] m-2"></span>
+                    <span class="text-[#919ca1] text-[11px]">03</span>
+                </h5>
+                <Transition name="slide-fade">
+                    <card :withLink="false" class="h-auto" v-if="topPosition > 900">
+                        <template #other>
+                            <p v-for="motivation in motivations" class="text-sm p-2">{{ motivation }}.</p>
+                        </template>
+                    </card>
+                </Transition>
+            </article>
+
+            <!-- RECOMMANDATIONS -->
+            <article>
+                <h5 class="my-10 flex justify-center items-center whitespace-nowrap text-[#00283a] dark:text-[#dedee0] text-xl font-bold">
+                    <span>Recommandations</span>
+                    <span class="h-[1px] w-full border-dotted border-b-[2px] border-b-gray-300 dark:border-b-[#224454] m-2"></span>
+                    <span class="text-[#919ca1] text-[11px]">04</span>
+                </h5>
+                <Transition name="slide-fade">
+                    <carousel v-if="topPosition > 1400" :items="testimonies" :withIndicator="true" :autoPlay="false" height="55" class="my-10">
+                        <template #default="{ item }">
+                            <div class="flex flex-col items-center absolute top-[15%] lg:top-[18%] dark:text-[#dedee0]">
+                                <h4 class="font-bold lg:text-xl">{{ item.author }}</h4>
+                                <h4 class="font-bold">{{ item.job }}</h4>
+                                <div class="flex gap-4">
+                                    <img :src="url + '/' + item.picture" alt="logo" class="rounded-full h-10 w-10">
+                                    <p>{{ item.business }}</p>
+                                </div>
+                                <p class="text-xs lg:text-sm text-center my-12 lg:m-8">{{ item.testimony }}</p>
                             </div>
-                            <p class="text-sm text-center m-8">{{ item.testimony }}</p>
-                        </div>
-                    </template>
-                </carousel>
-            </Transition>
+                        </template>
+                    </carousel>
+                </Transition>
+            </article>
+
         </template>
     </LayoutPage>
 </template>

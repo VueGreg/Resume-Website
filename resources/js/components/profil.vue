@@ -35,7 +35,7 @@
     <div class="px-[40px] py-[20px] bg-[#fcfcfe] dark:bg-[#00283a] h-full flex flex-col justify-start w-full rounded-[10px] shadow-md">
         <div class="text-center">
             <div class="relative mb-[20px] text-center flex flex-col justify-center items-center">
-                <img class="border-[3px] border-[#fcfcfe] dark:border-[#00283a] shadow-md w-[110px] lg:w-[200px] h-[110px] lg:h-[200px] rounded-full object-cover object-top mb-10" src="http://resumewolff.test/images/Moi-removebg-preview.png" alt="">
+                <img class="border-[3px] border-[#fcfcfe] dark:border-[#00283a] shadow-md w-[110px] lg:w-[200px] h-[110px] lg:h-[200px] rounded-full object-cover object-top mb-10" :src="data.image_profil" alt="Photo de Grégory WOLFF">
                 <h5 class="text-[18px] py-1 font-extrabold text-[#00283A] dark:text-[#dedee0]">Grégory WOLFF</h5>
                 <span id="autotext" class="text-[11px] mt-2 uppercase tracking-wide font-extrabold pr-[1px] text-[#919ca1] border-r-2 border-transparent transition-colors duration-500 animate-blink">
                     Je suis {{ displayedText }}
@@ -51,6 +51,9 @@
             </a>
             <a class="mx-[10px]" :href="data.github" target="_blank" title="GitHub">
                 <i class="fab fa-github"></i>
+            </a>
+            <a class="mx-[10px]" :href="data.facebook" target="_blank" title="GitHub">
+                <i class="fa-brands fa-square-facebook"></i>
             </a>
         </div>
 

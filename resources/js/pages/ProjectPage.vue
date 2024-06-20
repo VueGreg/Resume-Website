@@ -8,11 +8,18 @@
     const projects = ref([]);
     const allTypes = ref([]);
     const selectedType = ref(null);
-    const showOn = ref('info');
+    const showOn = ref('informations');
     const showAllStates = ref({});
 
     const props = defineProps({
         data: Object,
+    })
+
+    const tabs = ref({
+        1: {name: 'informations'},
+        2: {name: 'description'},
+        3: {name: 'Compétences travaillées'},
+        4: {name: 'Technologies utilisées'},
     })
 
     const filterProject = (type) => {
@@ -36,6 +43,10 @@
 
     const isShown = (id) => {
         return !!showAllStates.value[id];
+    }
+
+    const splitText = (text) => {
+        return text.split(/[\.\?!]\s+/);
     }
 
     onMounted(() => {
@@ -76,66 +87,59 @@
             </div>
             <TransitionGroup name="list" tag="div">
                 <div v-for="project in filteredProjects" :key="project.id">
-                    <Card :withLink="false" :class="['h-auto p-0', isShown(project.id) ? 'max-height-expanded' : 'max-height-collapsed']">
+                    <Card :withLink="false" :class="['h-auto', isShown(project.id) ? 'max-height-expanded' : 'max-height-collapsed']" style="padding: 0;">
                     <template #other class="relative">
                         <div @click.prevent="toggleShowAll(project.id)" class="cursor-pointer">
-                            <div class="flex items-center justify-center">
-                                <img v-if="!isShown(project.id)" :src="project.image" :alt="project.alt" class="rounded-lg h-[70px] w-[140px] absolute left-3">
-                                <h5 class="text-center text-xl font-semibold my-8">{{ project.name }}</h5>
+                            <div class="flex flex-col lg:flex-row items-center justify-center">
+                                <img v-if="!isShown(project.id)" :src="project.image" :alt="project.alt" class="rounded-lg hidden lg:block h-[70px] w-[140px] absolute left-3">
+                                <h5 class="text-center text-sm text-wrap w-2/3 lg:w-full lg:text-xl font-semibold my-8">{{ project.name }}</h5>
                             </div>
-                            <i class="fa-solid fa-circle-arrow-down absolute left-[95%] top-[40%] text-xl cursor-pointer transition-transform duration-500" 
-                                :class="isShown(project.id) ? 'rotate-180 top-[38px]' : ''"
+                            <i class="fa-solid fa-circle-arrow-down absolute left-[90%] lg:left-[95%] top-[35px] text-xl cursor-pointer transition-transform duration-500" 
+                                :class="isShown(project.id) ? 'rotate-180' : ''"
                                 ></i>
                             <img v-if="isShown(project.id)" :src="project.image" :alt="project.alt" class="rounded-lg">
                         </div>
                         <div class="flex flex-col p-10" name="slide" v-if="isShown(project.id)">
-                            <div class="flex justify-around items-center text-center text-sm font-semibold uppercase">
-                                <h6 @click.prevent="showOn = 'info'" 
-                                    class="h-[40px] flex items-center m-4 pr-8 cursor-pointer border-r" 
-                                    :class="showOn == 'info' ? 'underline text-[#70ba65]' : ''"
-                                    >Informations</h6>
+                            <div class="hidden lg:flex flex-col lg:flex-row justify-around items-center text-center text-sm font-semibold uppercase">
+                                <h6 @click.prevent="showOn = tab.name" 
+                                    class="h-[40px] flex items-center m-4 lg:pr-8 cursor-pointer lg:border-r none-border" 
+                                    :class="showOn == tab.name ? 'underline text-[#70ba65]' : ''"
+                                    v-for="(tab, index) in tabs"
+                                    :key="index"
+                                    >{{ tab.name }}</h6>
+                            </div>
 
-                                <h6 @click.prevent="showOn = 'description'" 
-                                    class="h-[40px] flex items-center m-4 pr-8 cursor-pointer uppercase border-r" 
-                                    :class="showOn == 'description' ? 'underline text-[#70ba65]' : ''"
-                                    >Description</h6>
-
-                                <h6 @click.prevent="showOn = 'competences'" 
-                                class="h-[40px] flex items-center m-4 pr-8 cursor-pointer uppercase border-r" 
-                                    :class="showOn == 'competences' ? 'underline text-[#70ba65]' : ''"
-                                    >Compétences travaillées</h6>
-
-                                <h6 @click.prevent="showOn = 'technology'" 
-                                    class="h-[40px] flex items-center m-4 cursor-pointer uppercase" 
-                                    :class="showOn == 'technology' ? 'underline text-[#70ba65]' : ''"
-                                    >Technologies utilisées</h6>
+                            <div class="text-center text-sm font-semibold uppercase flex justify-center lg:hidden">
+                                <select v-model="showOn" class="dark:bg-[#00283a] uppercase text-center underline text-[#70ba65] border-b border-b-[#70ba65] py-1">
+                                    <option v-for="(tab, index) in tabs" :key="index">{{ tab.name }}</option>
+                                </select> 
                             </div>
 
                             <div class="h-auto">
                             <Transition name="slide-fade">
-                                <div v-if="showOn == 'competences'">
-                                    <ul class="flex flex-wrap m-8 gap-4 justify-center">
+                                <div v-if="showOn == 'Compétences travaillées'">
+                                    <ul class="flex flex-wrap my-8 lg:m-8 gap-4 justify-center text-center">
                                         <li class="rounded-full border px-4 py-2 text-xs" v-for="skill in project.skills" :key="skill.id">{{ skill.name }}</li>
                                     </ul>
                                 </div>
                                 <div v-else-if="showOn == 'description'">
-                                    <div class="flex m-8 gap-4 justify-center">
-                                        <p class="px-4 py-2 text-sm">{{ project.description }}</p>
+                                    <div class="flex flex-col my-8 lg:m-8 gap-4 justify-center">
+                                        <p v-for="text in splitText(project.description)" class="text-sm">{{ text }}</p>
                                     </div>
                                 </div>
-                                <div v-else-if="showOn == 'technology'">
-                                    <ul class="flex m-8 gap-4 justify-center">
+                                <div v-else-if="showOn == 'Technologies utilisées'">
+                                    <ul class="flex flex-col lg:flex-row m-8 gap-4 justify-center text-center">
                                         <li class="rounded-full border px-4 py-2 text-xs" v-for="technology in project.technologies" :key="technology.id">{{ technology.name }}</li>
                                     </ul>
                                 </div>
-                                <div v-else-if="showOn == 'info'">
-                                    <ul class="flex flex-col m-4 gap-4 justify-center">
-                                        <li class="flex justify-around mb-[10px] w-full">
-                                            <div>GitHub</div>
+                                <div v-else-if="showOn == 'informations'">
+                                    <ul class="flex flex-col my-4 lg:m-8 gap-4 justify-center text-center">
+                                        <li class="flex flex-col lg:flex-row justify-around mb-[10px] w-full">
+                                            <div class="lg:text-left my-2 lg:m-0">GitHub</div>
                                             <a :href="project.website" target="_blank" class="font-bold text-[#919ca1]">{{ project.github }}</a>
                                         </li>
-                                        <li class="flex justify-around mb-[10px] w-full">
-                                            <div>URL:</div>
+                                        <li class="flex flex-col lg:flex-row justify-around mb-[10px] w-full">
+                                            <div  class="lg:text-left my-2 lg:m-0">URL:</div>
                                             <a :href="project.website" target="_blank" class="font-bold text-[#919ca1]">{{ project.website }}</a>
                                         </li>
                                     </ul>
@@ -189,14 +193,18 @@
     }
 
     .max-height-collapsed {
-        max-height: 100px;
-        overflow: hidden;
+        max-height: 150px;
         transition: max-height .8s ease;
     }
 
     .max-height-expanded {
-        max-height: 2000px;
+        max-height: 3000px;
         transition: max-height 0.8s ease;
+    }
+
+    .none-border:last-child {
+        border: none;
+        padding: 0;
     }
 
 </style>
